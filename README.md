@@ -1,6 +1,6 @@
-# Iris-Dialogflow
+# Iris-Flower
 
 -------
 
 ## Check out the chatbot here!
-http://t.me/Irispredictor_bot
+http://t.me/qbanny_bot
