@@ -5,7 +5,8 @@ import pickle
 from flask_cors import cross_origin
 
 app = Flask(__name__)
-model = pickle.load(open('rf.pkl', 'rb'))
+#model = pickle.load(open('rf.pkl', 'rb'))
+loaded_model = load_model('./spam_model.sav')
 
 @app.route('/')
 def hello():
@@ -38,32 +39,25 @@ def processRequest(req):
     #user_says=result.get("queryText")
     #log.write_log(sessionID, "User Says: "+user_says)
     parameters = result.get("parameters")
-    Petal_length=parameters.get("number")
-    Petal_width = parameters.get("number1")
-    Sepal_length=parameters.get("number2")
-    Sepal_width=parameters.get("number3")
-    int_features = [Petal_length,Petal_width,Sepal_length,Sepal_width]
-    
-    final_features = [np.array(int_features)]
+    message=parameters.get("msg")
+
 	 
     intent = result.get("intent").get('displayName')
     
-    if (intent=='IrisData'):
-        prediction = model.predict(final_features)
+    if (intent=='yes'):
+        prediction = model.predict(message)
     
         output = round(prediction[0], 2)
     
     	
         if(output==0):
-            flowr = 'Setosa'
+            msg_status = 'Ham'
     
         if(output==1):
-            flowr = 'Versicolour'
+             msg_status = 'Spam'
         
-        if(output==2):
-            flowr = 'Virginica'
-       
-        fulfillmentText= "The Iris type seems to be..  {} !".format(flowr)
+            
+        fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
         #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
         return {
             "fulfillmentText": fulfillmentText
