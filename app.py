@@ -66,15 +66,15 @@ def processRequest(req):
     intent = result.get("intent").get('displayName')
 
     if (intent=='yes'):
-         prediction = loaded_model.predict(text_matrix)
+        prediction = loaded_model.predict(text_matrix)
 
 
 
         if(prediction<=0.5):
-             msg_status = 'Ham'
+            msg_status = 'Ham'
 
         if(prediction>=0.5):
-             msg_status = 'Spam'
+            msg_status = 'Spam'
 
             
         fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
