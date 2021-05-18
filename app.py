@@ -70,17 +70,17 @@ if (intent=='yes'):
     
        
     	
-    if(prediction<=0.5):
-        msg_status = 'Ham'
+     if(prediction<=0.5):
+         msg_status = 'Ham'
     
-    if(prediction>=0.5):
-        msg_status = 'Spam'
+     if(prediction>=0.5):
+         msg_status = 'Spam'
         
             
-     fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
-     #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
-     return {
-             "fulfillmentText": fulfillmentText
+      fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
+      #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
+      return {
+              "fulfillmentText": fulfillmentText
         }
     #else:
     #    log.write_log(sessionID, "Bot Says: " + result.fulfillmentText)
