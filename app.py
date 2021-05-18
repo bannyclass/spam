@@ -63,18 +63,18 @@ loaded_model = load_model('./spam_model.sav')
 
 
 	 
-    intent = result.get("intent").get('displayName')
+intent = result.get("intent").get('displayName')
     
-    if (intent=='yes'):
-        prediction = loaded_model.predict(text_matrix)
+  if (intent=='yes'):
+       prediction = loaded_model.predict(text_matrix)
     
          
     	
-        if(prediction<=0.5):
-            msg_status = 'Ham'
+       if(prediction<=0.5):
+           msg_status = 'Ham'
     
-        if(prediction>=0.5):
-             msg_status = 'Spam'
+       if(prediction>=0.5):
+           msg_status = 'Spam'
         
             
         fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
