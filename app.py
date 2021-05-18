@@ -5,7 +5,7 @@ import pickle
 from flask_cors import cross_origin
 
 app = Flask(__name__)
-#model = pickle.load(open('rf.pkl', 'rb'))
+model = pickle.load(open('rf.pkl', 'rb'))
 loaded_model = load_model('./spam_model.sav')
 
 @app.route('/')
@@ -50,10 +50,10 @@ def processRequest(req):
         output = round(prediction[0], 2)
     
     	
-        if(output==0):
+        if(output<=0.5):
             msg_status = 'Ham'
     
-        if(output==1):
+        if(output>=0.5):
              msg_status = 'Spam'
         
             
