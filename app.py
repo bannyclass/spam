@@ -82,8 +82,7 @@ if (intent=='yes'):
      return {
          "fulfillmentText": fulfillmentText
      }
-    #else:
-    #    log.write_log(sessionID, "Bot Says: " + result.fulfillmentText)
+
 
 if __name__ == '__main__':
     app.run()
