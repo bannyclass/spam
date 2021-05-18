@@ -44,15 +44,31 @@ def processRequest(req):
     #log.write_log(sessionID, "User Says: "+user_says)
     parameters = result.get("parameters")
     message=parameters.get("msg")
+	
+
+tokenizer = None
+with open('./spam_tokenizer.json') as f:
+    data = json.load(f)
+    tokenizer = tokenizer_from_json(data)
+tokenizer
+
+sen = tokenizer.texts_to_sequences(message)
+sen
+
+text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
+text_matrix
+
+loaded_model = load_model('./spam_model.sav')
+#loaded_model.summary()
+
 
 	 
     intent = result.get("intent").get('displayName')
     
     if (intent=='yes'):
-        prediction = model.predict(message)
+        prediction = loaded_model.predict(text_matrix)
     
-        #output = round(prediction[0], 2)
-    
+         
     	
         if(prediction<=0.5):
             msg_status = 'Ham'
