@@ -9,7 +9,7 @@ from tensorflow.keras.preprocessing import sequence
 import json
 
 app = Flask(__name__)
-model = pickle.load(open('rf.pkl', 'rb'))
+#model = pickle.load(open('rf.pkl', 'rb'))
 loaded_model = load_model('./spam_model.sav')
 
 @app.route('/')
