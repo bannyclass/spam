@@ -46,42 +46,42 @@ def processRequest(req):
     message=parameters.get("msg")
 	
 
-tokenizer = None
-with open('./spam_tokenizer.json') as f:
-    data = json.load(f)
-    tokenizer = tokenizer_from_json(data)
-tokenizer
+    tokenizer = None
+    with open('./spam_tokenizer.json') as f:
+        data = json.load(f)
+        tokenizer = tokenizer_from_json(data)
+    tokenizer
 
-sen = tokenizer.texts_to_sequences(message)
-sen
+    sen = tokenizer.texts_to_sequences(message)
+    sen
 
-text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
-text_matrix
+    text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
+    text_matrix
 
-loaded_model = load_model('./spam_model.sav')
-#loaded_model.summary()
+    loaded_model = load_model('./spam_model.sav')
+    #loaded_model.summary()
 
 
-	 
-intent = result.get("intent").get('displayName')
-    
-if (intent=='yes'):
-     prediction = loaded_model.predict(text_matrix)
-    
-       
-    	
-     if(prediction<=0.5):
-         msg_status = 'Ham'
-    
-     if(prediction>=0.5):
-         msg_status = 'Spam'
-        
+
+    intent = result.get("intent").get('displayName')
+
+    if (intent=='yes'):
+         prediction = loaded_model.predict(text_matrix)
+
+
+
+        if(prediction<=0.5):
+             msg_status = 'Ham'
+
+        if(prediction>=0.5):
+             msg_status = 'Spam'
+
             
-     fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
-     #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
-     return {
-         "fulfillmentText": fulfillmentText
-     }
+        fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
+        #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
+        return {
+            "fulfillmentText": fulfillmentText
+        }
 
 
 if __name__ == '__main__':
