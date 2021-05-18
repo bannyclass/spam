@@ -51,13 +51,13 @@ def processRequest(req):
     if (intent=='yes'):
         prediction = model.predict(message)
     
-        output = round(prediction[0], 2)
+        #output = round(prediction[0], 2)
     
     	
-        if(output<=0.5):
+        if(prediction<=0.5):
             msg_status = 'Ham'
     
-        if(output>=0.5):
+        if(prediction>=0.5):
              msg_status = 'Spam'
         
             
