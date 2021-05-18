@@ -80,8 +80,8 @@ if (intent=='yes'):
       fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
       #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
       return {
-              "fulfillmentText": fulfillmentText
-        }
+          "fulfillmentText": fulfillmentText
+      }
     #else:
     #    log.write_log(sessionID, "Bot Says: " + result.fulfillmentText)
 
