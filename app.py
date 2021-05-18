@@ -3,6 +3,10 @@ from flask import Flask, request, make_response
 import json
 import pickle
 from flask_cors import cross_origin
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.text import tokenizer_from_json
+from tensorflow.keras.preprocessing import sequence
+import json
 
 app = Flask(__name__)
 model = pickle.load(open('rf.pkl', 'rb'))
