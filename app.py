@@ -12,12 +12,6 @@ app = Flask(__name__)
 #model = pickle.load(open('rf.pkl', 'rb'))
 loaded_model = load_model('./spam_model.sav')
 
-tokenizer = None
-with open('./spam_tokenizer.json') as f:
-    data = json.load(f)
-    tokenizer = tokenizer_from_json(data)
-tokenizer
-
 @app.route('/')
 def hello():
     return 'Hello World'
@@ -52,13 +46,23 @@ def processRequest(req):
     message=parameters.get("msg")
 	
 
+    tokenizer = None
+    with open('./spam_tokenizer.json') as f:
+        data = json.load(f)
+        tokenizer = tokenizer_from_json(data)
+    tokenizer
+
+    sen = tokenizer.texts_to_sequences(message)
+    
+
+    text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
+    
+
 
 
     intent = result.get("intent").get('displayName')
 
     if (intent=='yes'):
-	sen = tokenizer.texts_to_sequences(message)
-	text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
         prediction = loaded_model.predict(text_matrix)
 
 
@@ -83,3 +87,4 @@ if __name__ == '__main__':
 #    port = int(os.getenv('PORT', 5000))
 #    print("Starting app on port %d" % port)
 #    app.run(debug=False, port=port, host='0.0.0.0')
+
