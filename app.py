@@ -13,6 +13,7 @@ import json
 app = Flask(__name__)
 #model = pickle.load(open('rf.pkl', 'rb'))
 loaded_model = load_model('./spam_model.sav')
+max_len = 150
 
 @app.route('/')
 def hello():
