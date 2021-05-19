@@ -83,7 +83,7 @@ def processRequest(req):
 	    
     	
             
-        fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
+        fulfillmentText= "This message appears is a {}{} ! Thank you for using SpamBot Would you like to verify another message?".format(msg_status).format(prediction)
         #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
         return {
             "fulfillmentText": fulfillmentText
