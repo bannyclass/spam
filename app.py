@@ -62,14 +62,11 @@ def processRequest(req):
         sen
 
         text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
-        text_matrix
-       
+        text_matrix           
         
-        
-        prediction = loaded_model.predict(text_matrix)
-    
-    	a=prediction[0]
-		
+	prediction = loaded_model.predict(text_matrix)
+	a=prediction[0]
+	
         if(a[0] < 0.5):
             msg_status = 'Ham'
         else:
