@@ -72,13 +72,13 @@ def processRequest(req):
         
         prediction = loaded_model.predict(text_matrix)
     
-        output = round(prediction[0], 2)
+        
     
     	
-        if(output<=0.5):
+        if(prediction<=0.5):
             msg_status = 'Ham'
     
-        if(output>=0.5):
+        if(prediction>=0.5):
              msg_status = 'Spam'
         
             
