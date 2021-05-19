@@ -77,10 +77,10 @@ def processRequest(req):
         prediction = loaded_model.predict(text_matrix)
         a = prediction[0]
 
-        if a[0] < 0.5:
-            msg_status = 'Ham'
-        else:
+        if a[0] >= 0.5:
             msg_status = 'Spam'
+        else:
+            msg_status = 'Ham'
 
         fulfillmentText = \
             'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(msg_status)
