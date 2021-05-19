@@ -68,7 +68,7 @@ def processRequest(req):
         
         prediction = loaded_model.predict(text_matrix)
     
-    	a=prediction[-1]
+    	a=prediction[0]
 		
         if(a[0] < 0.5):
             msg_status = 'Ham'
