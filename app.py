@@ -51,7 +51,7 @@ def processRequest(req):
 	 
     intent = result.get("intent").get('displayName')
     
-    if (intent=='yes'):
+    if (intent=='m-yes'):
         
         tokenizer = None
         with open('./spam_tokenizer.json') as f:
