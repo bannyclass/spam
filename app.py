@@ -58,7 +58,7 @@ def processRequest(req):
             tokenizer = tokenizer_from_json(data)
         tokenizer
 
-        sen = tokenizer.texts_to_sequences(text)
+        sen = tokenizer.texts_to_sequences(message)
         sen
 
         text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
