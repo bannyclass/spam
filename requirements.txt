@@ -15,7 +15,7 @@ matplotlib>=1.4.3
 pandas>=0.19
 numpy>=1.9.2
 scipy>=0.15.1
-tensorflow-cpu
+tensorflow-gpu
 
 kiwisolver==1.1.0
 kneed==0.5.3
