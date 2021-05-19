@@ -57,14 +57,13 @@ def processRequest(req):
             data = json.load(f)
             tokenizer = tokenizer_from_json(data)
         tokenizer
-
-        sen = tokenizer.texts_to_sequences(message)
+	
+	sen = tokenizer.texts_to_sequences(message)
         sen
-
-        text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
-        text_matrix           
-        
-	prediction = loaded_model.predict(text_matrix)
+	
+	text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
+        text_matrix
+        prediction = loaded_model.predict(text_matrix)
 	a=prediction[0]
 	
         if(a[0] < 0.5):
