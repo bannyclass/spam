@@ -76,9 +76,9 @@ def processRequest(req):
     
     	
         if(prediction[0] > 0.5):
-            msg_status = 'Spam'
-        else:
             msg_status = 'Ham'
+        else:
+            msg_status = 'Spam'
 	
 	    
     	
