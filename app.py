@@ -47,7 +47,6 @@ def processRequest(req):
     #log.write_log(sessionID, "User Says: "+user_says)
     parameters = result.get("parameters")
     message=parameters.get("msg")
-
 	 
     intent = result.get("intent").get('displayName')
     
@@ -64,18 +63,14 @@ def processRequest(req):
 
         text_matrix = sequence.pad_sequences(sen,maxlen=max_len)
         text_matrix
-
        
-
-        
         
         
         prediction = loaded_model.predict(text_matrix)
     
-        
-    
-    	
-        if(prediction[0] > 0.5):
+    	a=prediction[-1]
+		
+        if(a[0] < 0.5):
             msg_status = 'Ham'
         else:
             msg_status = 'Spam'
@@ -83,7 +78,7 @@ def processRequest(req):
 	    
     	
             
-        fulfillmentText= "This message is a {} ! Thank you for using SpamBot Would you like to verify another message?".format(prediction)
+        fulfillmentText= "This message is a {} ! Thank you for using SpamBot Would you like to verify another message?".format(msg_status)
         #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
         return {
             "fulfillmentText": fulfillmentText
