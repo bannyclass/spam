@@ -19,7 +19,7 @@ def hello():
     return 'Hello World'
 
 # geting and sending response to dialogflow
-@app.route('/webhook', methods=['GET','POST'])
+@app.route('/webhook', methods=['POST'])
 @cross_origin()
 def webhook():
 
