@@ -3,4 +3,4 @@
 -------
 
 ## Check out the chatbot here!
-http://t.me/qbanny_bot
+http://t.me/Demabb_bot
