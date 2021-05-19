@@ -75,12 +75,14 @@ def processRequest(req):
         
     
     	
-        if(prediction<=0.5):
+        if(prediction[0]<=0.5):
             msg_status = 'Ham'
     
-        if(prediction>=0.5):
+        if(prediction[0]>=0.5):
              msg_status = 'Spam'
-        
+	
+	    
+    	
             
         fulfillmentText= "The Message appears to be..  {} !".format(msg_status)
         #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
