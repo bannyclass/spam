@@ -61,20 +61,22 @@ def processRequest(req):
     message = parameters.get('msg')
 
     intent = result.get('intent').get('displayName')
+    
+    tokenizer = None
+    with open('./spam_tokenizer.json') as f:
+        data = json.load(f)
+        tokenizer = tokenizer_from_json(data)
+    tokenizer
 
+    sen = tokenizer.texts_to_sequences(message)
+    sen
+
+    text_matrix = sequence.pad_sequences(sen, maxlen=max_len)
+    text_matrix
+    
     if (intent == 'm-yes'):
 
-        tokenizer = None
-        with open('./spam_tokenizer.json') as f:
-            data = json.load(f)
-            tokenizer = tokenizer_from_json(data)
-        tokenizer
 
-        sen = tokenizer.texts_to_sequences(message)
-        sen
-
-        text_matrix = sequence.pad_sequences(sen, maxlen=max_len)
-        text_matrix
         prediction = loaded_model.predict(text_matrix)
         a = prediction[0]
 
