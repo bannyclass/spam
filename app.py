@@ -86,7 +86,7 @@ def processRequest(req):
         
 
         fulfillmentText = \
-            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(msg_status)
+            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(a)
 
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
