@@ -68,7 +68,7 @@ def processRequest(req):
         tokenizer = tokenizer_from_json(data)
     tokenizer
 
-    sen = tokenizer.texts_to_sequences(message)
+    sen = tokenizer.texts_to_sequences([message])
     sen
 
     text_matrix = sequence.pad_sequences(sen, maxlen=max_len)
@@ -88,7 +88,7 @@ def processRequest(req):
         
 
         fulfillmentText = \
-            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(sen)
+            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(msg_status)
 
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
