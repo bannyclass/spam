@@ -14,8 +14,8 @@ app = Flask(__name__)
 
 # model = pickle.load(open('rf.pkl', 'rb'))
 
-#loaded_model = load_model('./spam_model.sav')
-loaded_model = load_model('./saved_model/my_model')
+loaded_model = load_model('./spam_model.sav')
+#loaded_model = load_model('./saved_model/my_model')
 max_len = 150
 
 
