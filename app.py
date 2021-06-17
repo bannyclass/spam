@@ -95,9 +95,7 @@ def processRequest(req):
 
         return {'fulfillmentText': fulfillmentText}
     
-    #...........................................................
-    
-    
+        #........................................................... 
         if (intent == 'm-yes-image'):
 
 
@@ -110,13 +108,12 @@ def processRequest(req):
         #if (a[0] < 0.5):
             #msg_status = 'Ham'            
         
-
-        fulfillmentText = \
+        fulfillmentText2 = \
             'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(image)
 
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
-        return {'fulfillmentText': fulfillmentText}
+        return {'fulfillmentText': fulfillmentText2}
 
 
     # else:
