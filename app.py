@@ -59,6 +59,7 @@ def processRequest(req):
 
     parameters = result.get('parameters')
     message = parameters.get('msg')
+    image = parameters.get('filename')
 
     intent = result.get('intent').get('displayName')
     
@@ -74,7 +75,7 @@ def processRequest(req):
     text_matrix = sequence.pad_sequences(sen, maxlen=max_len)
     text_matrix
     
-    if (intent == 'm-yes'):
+    if (intent == 'm-yes-text'):
 
 
         prediction = loaded_model.predict(text_matrix)
@@ -89,6 +90,29 @@ def processRequest(req):
 
         fulfillmentText = \
             'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(msg_status)
+
+        # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
+
+        return {'fulfillmentText': fulfillmentText}
+    
+    #...........................................................
+    
+    
+        if (intent == 'm-yes-image'):
+
+
+        #prediction = loaded_model.predict(text_matrix)
+        #a = prediction[0]
+
+        #if (a[0] > 0.5):
+            #msg_status = 'Spam'
+            
+        #if (a[0] < 0.5):
+            #msg_status = 'Ham'            
+        
+
+        fulfillmentText = \
+            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(image)
 
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
