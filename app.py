@@ -1,5 +1,7 @@
 ﻿#!/usr/bin/python
 # -*- coding: utf-8 -*-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import numpy as np
 from flask import Flask, request, make_response
 import json
@@ -15,7 +17,9 @@ app = Flask(__name__)
 # model = pickle.load(open('rf.pkl', 'rb'))
 
 loaded_model = load_model('./spam_model.sav')
-#loaded_model = load_model('./saved_model/my_model')
+
+# loaded_model = load_model('./saved_model/my_model')
+
 max_len = 150
 
 
@@ -62,7 +66,7 @@ def processRequest(req):
     image = parameters.get('filename')
 
     intent = result.get('intent').get('displayName')
-    
+
     tokenizer = None
     with open('./spam_tokenizer.json') as f:
         data = json.load(f)
@@ -74,19 +78,17 @@ def processRequest(req):
 
     text_matrix = sequence.pad_sequences(sen, maxlen=max_len)
     text_matrix
-    
-    if (intent == 'm-yes-text'):
 
+    if intent == 'm-yes-text':
 
         prediction = loaded_model.predict(text_matrix)
         a = prediction[0]
 
-        if (a[0] > 0.5):
+        if a[0] > 0.5:
             msg_status = 'Spam'
-            
-        if (a[0] < 0.5):
-            msg_status = 'Ham'            
-        
+
+        if a[0] < 0.5:
+            msg_status = 'Ham'
 
         fulfillmentText = \
             'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(msg_status)
@@ -94,20 +96,20 @@ def processRequest(req):
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
         return {'fulfillmentText': fulfillmentText}
-    
-        #........................................................... 
-        if (intent == 'm-yes-image'):
 
+        # ...........................................................
 
-        #prediction = loaded_model.predict(text_matrix)
-        #a = prediction[0]
+    if intent == 'm-yes-image':
 
-        #if (a[0] > 0.5):
-            #msg_status = 'Spam'
-            
-        #if (a[0] < 0.5):
-            #msg_status = 'Ham'            
-        
+        # prediction = loaded_model.predict(text_matrix)
+        # a = prediction[0]
+
+        # if (a[0] > 0.5):
+            # msg_status = 'Spam'
+
+        # if (a[0] < 0.5):
+            # msg_status = 'Ham'
+
         fulfillmentText2 = \
             'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(image)
 
@@ -126,3 +128,4 @@ if __name__ == '__main__':
 #    port = int(os.getenv('PORT', 5000))
 #    print("Starting app on port %d" % port)
 #    app.run(debug=False, port=port, host='0.0.0.0')
+
