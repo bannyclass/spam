@@ -64,6 +64,7 @@ def processRequest(req):
     parameters = result.get('parameters')
     message = parameters.get('msg')
     image = parameters.get('filename')
+    filename = agent.parameters.filename
 
     intent = result.get('intent').get('displayName')
 
@@ -111,7 +112,7 @@ def processRequest(req):
             # msg_status = 'Ham'
 
         fulfillmentText2 = \
-            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(image)
+            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(filename)
 
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
