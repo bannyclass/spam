@@ -63,8 +63,8 @@ def processRequest(req):
 
     parameters = result.get('parameters')
     message = parameters.get('msg')
-    image = parameters.get('filename')
-    filename = agent.parameters.filename
+    filename = parameters.get('filename')
+    #filename = Agent.parameters.filename
 
     intent = result.get('intent').get('displayName')
 
