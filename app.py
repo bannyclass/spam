@@ -63,7 +63,7 @@ def processRequest(req):
 
     parameters = result.get('parameters')
     message = parameters.get('msg')
-    filename = parameters.get('filename')
+    
     #filename = Agent.parameters.filename
 
     intent = result.get('intent').get('displayName')
@@ -101,6 +101,7 @@ def processRequest(req):
         # ...........................................................
 
     if intent == 'm-yes-image':
+        filename = parameters.get('filename')
 
         # prediction = loaded_model.predict(text_matrix)
         # a = prediction[0]
