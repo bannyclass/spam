@@ -1,7 +1,8 @@
-﻿#!/usr/bin/python
-# -*- coding: utf-8 -*-
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+# -*- coding: utf-8 -*-
+
 import numpy as np
 from flask import Flask, request, make_response
 import json
@@ -63,8 +64,11 @@ def processRequest(req):
 
     parameters = result.get('parameters')
     message = parameters.get('msg')
-    
-    #filename = Agent.parameters.filename
+    imgfile = parameters.get('filename')
+    imageUpload = \
+        'https://api.telegram.org/file/bot<1859293066:AAF5mJxolf1kaIr2ctPRJO5P00HH_QMIQhY>/<imgfile>'
+
+    # filename = Agent.parameters.filename
 
     intent = result.get('intent').get('displayName')
 
@@ -97,11 +101,11 @@ def processRequest(req):
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
         return {'fulfillmentText': fulfillmentText}
+       # ...........................................................
+        
+    elif intent == 'm-yes-image':
 
-        # ...........................................................
-
-    if intent == 'm-yes-image':
-        filename = parameters.get('filename')
+     
 
         # prediction = loaded_model.predict(text_matrix)
         # a = prediction[0]
@@ -113,7 +117,7 @@ def processRequest(req):
             # msg_status = 'Ham'
 
         fulfillmentText2 = \
-            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(filename)
+            'This message is a {} ! Thank you for using SpamBot Would you like to verify another message?'.format(imageUpload)
 
         # log.write_log(sessionID, "Bot Says: "+fulfillmentText)
 
@@ -130,4 +134,3 @@ if __name__ == '__main__':
 #    port = int(os.getenv('PORT', 5000))
 #    print("Starting app on port %d" % port)
 #    app.run(debug=False, port=port, host='0.0.0.0')
-
